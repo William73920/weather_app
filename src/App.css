@@ -87,9 +87,30 @@ h1 {
   text-align: center;
 }
 
+.recent_search {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.recent_search button {
+  background-color: rgb(107, 105, 228);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 @media screen and (max-width: 560px) {
   .weather_info {
     font-size: 10px;
+  }
+
+  .search_container {
+    flex-direction: column;
   }
 
   .weather_icon {

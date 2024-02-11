@@ -13,6 +13,7 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [unit, setUnit] = useState("");
+  const [searchHistory, setSearchHistory] = useState([]);
 
   const fetchWeatherData = async () => {
     setWeatherData(null);
@@ -28,6 +29,7 @@ function App() {
       fetchhourlyWeatherData();
 
       setWeatherData(response.data);
+      saveSearchHistory(city);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -35,15 +37,30 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const storedHistory = localStorage.getItem("searchHistory");
+    if (storedHistory) {
+      setSearchHistory(JSON.parse(storedHistory));
+    }
+  }, []);
+
   const fetchhourlyWeatherData = async () => {
     try {
-      // Replace the URL with the actual historical weather API endpoint
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&cnt=10&units=${unit?.value}`
       );
       setHourlyData(response.data);
     } catch (error) {
       console.error("Error fetching historical weather data:", error);
+    }
+  };
+
+  const saveSearchHistory = (search) => {
+    if (!searchHistory.includes(search)) {
+      const newHistory = [...searchHistory.slice(1), search];
+      setSearchHistory(newHistory);
+
+      localStorage.setItem("searchHistory", JSON.stringify(newHistory));
     }
   };
 
@@ -57,7 +74,8 @@ function App() {
       ...provided,
       border: "1px solid #ccc",
       borderRadius: "4px",
-      height: "30px",
+      minheight: "30px",
+
       boxShadow: state.isFocused ? "0 0 0 1px #2684FF" : null,
       "&:hover": {
         borderColor: "#2684FF",
@@ -83,6 +101,7 @@ function App() {
             type="text"
             placeholder="Enter city name"
             onChange={(e) => setCity(e.target.value)}
+            value={city}
           />
         </div>
         <Select
@@ -94,6 +113,17 @@ function App() {
         />
 
         <button onClick={fetchWeatherData}>Search</button>
+      </div>
+      <div className="recent_search">
+        {searchHistory.map((search, index) => (
+          <button
+            key={index}
+            onClick={() => setCity(search)}
+            className="recent_search_button"
+          >
+            {search}
+          </button>
+        ))}
       </div>
       <h2 className="city_name">{weatherData && weatherData.name}</h2>
 
