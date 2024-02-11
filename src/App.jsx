@@ -56,13 +56,10 @@ function App() {
   };
 
   const saveSearchHistory = (search) => {
-    // Check if the search is not already in the history
     if (!searchHistory.includes(search)) {
-      // Update search history
       const newHistory = [...searchHistory.slice(1, 5), search];
       setSearchHistory(newHistory);
 
-      // Save search history to local storage
       localStorage.setItem("searchHistory", JSON.stringify(newHistory));
     }
   };
