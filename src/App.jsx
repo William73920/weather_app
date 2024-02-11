@@ -99,7 +99,7 @@ function App() {
         <div className="search_input">
           <input
             type="text"
-            placeholder="Enter city name"
+            placeholder="Enter city name here"
             onChange={(e) => setCity(e.target.value)}
             value={city}
           />
