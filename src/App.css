@@ -1,0 +1,98 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 15px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.search_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search_input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+}
+
+.search_input input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  outline: none;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+.search_container button {
+  flex: 1;
+  padding: 10px;
+  background-color: rgb(107, 105, 228);
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search_container button:hover {
+  background-color: rgb(65, 63, 238);
+}
+
+.weather_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+}
+
+.weather_info {
+  line-height: 2px;
+}
+
+.weather_icon {
+  width: 20%;
+}
+
+.weather_icon img {
+  width: 100%;
+}
+
+.chart_container {
+  max-width: 900px;
+}
+
+.city_name {
+  font-weight: bold;
+
+  margin-bottom: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 560px) {
+  .weather_info {
+    font-size: 10px;
+  }
+
+  .weather_icon {
+    width: 30%;
+  }
+}
