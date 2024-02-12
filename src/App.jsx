@@ -12,7 +12,7 @@ function App() {
   const historicalApiKey = "YOUR_HISTORICAL_WEATHER_API_KEY";
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [unit, setUnit] = useState("");
+  const [unit, setUnit] = useState({ value: "metric", label: "Celcius" });
   const [searchHistory, setSearchHistory] = useState([]);
   const [displayUnit, setDisplayUnit] = useState("");
 
