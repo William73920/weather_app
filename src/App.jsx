@@ -57,7 +57,13 @@ function App() {
 
   const saveSearchHistory = (search) => {
     if (!searchHistory.includes(search)) {
-      const newHistory = [...searchHistory.slice(1, 5), search];
+      let newHistory = [];
+      if (searchHistory.length >= 5) {
+        newHistory = [...searchHistory.slice(1, 5), search];
+      } else {
+        newHistory = [...searchHistory, search];
+      }
+
       setSearchHistory(newHistory);
 
       localStorage.setItem("searchHistory", JSON.stringify(newHistory));
