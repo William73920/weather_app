@@ -14,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [unit, setUnit] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
+  const [displayUnit, setDisplayUnit] = useState("");
 
   const fetchWeatherData = async () => {
     setWeatherData(null);
@@ -23,6 +24,8 @@ function App() {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit?.value}`
       );
+
+      setDisplayUnit(unit?.value);
 
       setError(null);
 
@@ -150,7 +153,10 @@ function App() {
           <div className="weather_info">
             <div className="temperature">
               {weatherData && (
-                <h2>{weatherData.main.temp.toFixed(0)}°C&deg;</h2>
+                <h2>
+                  {weatherData.main.temp.toFixed(0)}
+                  {displayUnit === "imperial" ? "°F" : "°C"};
+                </h2>
               )}
             </div>
             <div className="weather_description">
